@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SpeakingInBitsWeb.Models;
 using System.Diagnostics;
 
 namespace SpeakingInBitsWeb.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -12,11 +14,14 @@ namespace SpeakingInBitsWeb.Controllers
         {
             _logger = logger;
         }
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
+
+        //[Authorize(Roles = IdentityHelper.Student)]
+        
 
         public IActionResult Privacy()
         {
